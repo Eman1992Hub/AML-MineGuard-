@@ -14,11 +14,66 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-
+<script>
+window.addEventListener("load", () => {
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("./service-worker.js")
+      .then(() => console.log("SW Registered"))
+      .catch(console.error);
+  }
+});
+</script>
   <!-- SPLASH SCREEN -->
   <div id="splash">
     <div class="splash-inner">
-      <div class="splash-icon">⛏️</div>
+      <div class="splash-icon" style="line-height:1;margin-bottom:4px;">
+        <svg class="exc-svg-splash" viewBox="0 0 120 78" xmlns="http://www.w3.org/2000/svg" width="88" height="57" style="overflow:visible;filter:drop-shadow(0 4px 14px rgba(245,197,24,0.4))">
+          <!-- Tracks -->
+          <rect x="6" y="59" width="72" height="13" rx="6.5" fill="#1e2035" stroke="#f5c518" stroke-width="1.6"/>
+          <circle cx="13" cy="65.5" r="6.2" fill="#12141f" stroke="#f5c518" stroke-width="1.6"/>
+          <circle cx="71" cy="65.5" r="6.2" fill="#12141f" stroke="#f5c518" stroke-width="1.6"/>
+          <circle cx="29" cy="65.5" r="3.8" fill="#1e2035" stroke="#f5c518" stroke-width="1"/>
+          <circle cx="46" cy="65.5" r="3.8" fill="#1e2035" stroke="#f5c518" stroke-width="1"/>
+          <circle cx="59" cy="65.5" r="3.8" fill="#1e2035" stroke="#f5c518" stroke-width="1"/>
+          <!-- Machine body -->
+          <rect x="10" y="37" width="54" height="26" rx="3" fill="#e8b800" stroke="#b88e00" stroke-width="1.5"/>
+          <!-- Cab window -->
+          <rect x="42" y="40" width="18" height="14" rx="2" fill="#1a2a3a" stroke="#2ec4b6" stroke-width="1.2"/>
+          <line x1="51" y1="40" x2="51" y2="54" stroke="#2ec4b6" stroke-width="0.8" opacity="0.5"/>
+          <!-- Cab roof -->
+          <rect x="40" y="33" width="26" height="7" rx="2" fill="#d4a800" stroke="#b88e00" stroke-width="1.2"/>
+          <!-- Counterweight block -->
+          <rect x="7" y="41" width="15" height="17" rx="2" fill="#c49a00" stroke="#906e00" stroke-width="1"/>
+          <!-- ANIMATED BOOM GROUP -->
+          <g style="transform-origin:57px 37px;animation:exc-boom-a 2.4s ease-in-out infinite">
+            <line x1="57" y1="37" x2="90" y2="14" stroke="#d4a800" stroke-width="6.5" stroke-linecap="round"/>
+            <line x1="56" y1="37" x2="89" y2="14" stroke="#e8b800" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+            <g style="transform-origin:90px 14px;animation:exc-arm-a 2.4s ease-in-out infinite">
+              <line x1="90" y1="14" x2="108" y2="33" stroke="#c49a00" stroke-width="5.5" stroke-linecap="round"/>
+              <g style="transform-origin:108px 33px;animation:exc-bucket-a 2.4s ease-in-out infinite">
+                <path d="M108 33 L121 37 L117 54 L104 52 Z" fill="#f5c518" stroke="#b88e00" stroke-width="1.6"/>
+                <line x1="107" y1="52" x2="105" y2="60" stroke="#8a6600" stroke-width="2.2" stroke-linecap="round"/>
+                <line x1="112" y1="53" x2="111" y2="61" stroke="#8a6600" stroke-width="2.2" stroke-linecap="round"/>
+                <line x1="117" y1="52" x2="117" y2="60" stroke="#8a6600" stroke-width="2.2" stroke-linecap="round"/>
+              </g>
+            </g>
+          </g>
+          <!-- Hydraulic cylinders (static look) -->
+          <line x1="62" y1="37" x2="82" y2="20" stroke="#777" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+          <line x1="90" y1="14" x2="100" y2="27" stroke="#777" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+          <!-- Dust particles -->
+          <circle cx="113" cy="57" r="2.8" fill="#8B6914" style="animation:exc-dust-a 2.4s ease-out infinite"/>
+          <circle cx="119" cy="61" r="2" fill="#8B6914" style="animation:exc-dust-a 2.4s ease-out 0.25s infinite"/>
+          <circle cx="108" cy="63" r="2.3" fill="#8B6914" style="animation:exc-dust-a 2.4s ease-out 0.5s infinite"/>
+        </svg>
+        <style>
+          @keyframes exc-boom-a   { 0%{transform:rotate(0deg)} 38%{transform:rotate(-16deg)} 62%{transform:rotate(6deg)} 100%{transform:rotate(0deg)} }
+          @keyframes exc-arm-a    { 0%{transform:rotate(0deg)} 38%{transform:rotate(20deg)}  62%{transform:rotate(-8deg)} 100%{transform:rotate(0deg)} }
+          @keyframes exc-bucket-a { 0%{transform:rotate(0deg)} 38%{transform:rotate(18deg)}  62%{transform:rotate(-6deg)} 100%{transform:rotate(0deg)} }
+          @keyframes exc-dust-a   { 0%{transform:translate(0,0);opacity:.8} 60%{transform:translate(-8px,-14px);opacity:.4} 100%{transform:translate(-14px,-26px);opacity:0} }
+        </style>
+      </div>
       <h1 class="splash-title">MINE<span>GUARD</span></h1>
       <p class="splash-sub">Mining Safety Companion</p>
       <div class="splash-aml-logo">
@@ -35,7 +90,26 @@
     <!-- HEADER -->
     <header class="app-header">
       <div class="header-left">
-        <span class="header-icon">⛏️</span>
+        <span class="header-icon" style="display:inline-flex;align-items:center;line-height:1;">
+          <svg viewBox="0 0 120 78" xmlns="http://www.w3.org/2000/svg" width="28" height="18" style="overflow:visible;filter:drop-shadow(0 0 5px rgba(245,197,24,0.5))">
+            <rect x="6" y="59" width="72" height="13" rx="6.5" fill="#1e2035" stroke="#f5c518" stroke-width="2"/>
+            <circle cx="13" cy="65.5" r="6.2" fill="#12141f" stroke="#f5c518" stroke-width="2"/>
+            <circle cx="71" cy="65.5" r="6.2" fill="#12141f" stroke="#f5c518" stroke-width="2"/>
+            <rect x="10" y="37" width="54" height="26" rx="3" fill="#e8b800" stroke="#b88e00" stroke-width="2"/>
+            <rect x="42" y="40" width="18" height="14" rx="2" fill="#1a2a3a" stroke="#2ec4b6" stroke-width="1.5"/>
+            <rect x="40" y="33" width="26" height="7" rx="2" fill="#d4a800"/>
+            <rect x="7" y="41" width="15" height="17" rx="2" fill="#c49a00"/>
+            <g style="transform-origin:57px 37px;animation:exc-boom-a 2.4s ease-in-out infinite">
+              <line x1="57" y1="37" x2="90" y2="14" stroke="#d4a800" stroke-width="6.5" stroke-linecap="round"/>
+              <g style="transform-origin:90px 14px;animation:exc-arm-a 2.4s ease-in-out infinite">
+                <line x1="90" y1="14" x2="108" y2="33" stroke="#c49a00" stroke-width="5.5" stroke-linecap="round"/>
+                <g style="transform-origin:108px 33px;animation:exc-bucket-a 2.4s ease-in-out infinite">
+                  <path d="M108 33 L121 37 L117 54 L104 52 Z" fill="#f5c518" stroke="#b88e00" stroke-width="2"/>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </span>
         <span class="header-title">MINE<span>GUARD</span></span>
       </div>
       <div class="header-right">
@@ -100,7 +174,68 @@
             <h2 id="heroTitle">Stay Safe.<br/>Work Smart.</h2>
             <p id="heroSub">Your on-site mining safety companion. Works fully offline.</p>
           </div>
-          <div class="hero-badge">⛏️</div>
+          <div class="hero-badge" style="display:flex;align-items:center;justify-content:center;line-height:1;">
+            <svg class="adt-svg" viewBox="0 0 160 90" xmlns="http://www.w3.org/2000/svg" width="72" height="40" style="overflow:visible;filter:drop-shadow(0 4px 16px rgba(245,197,24,0.5))">
+              <!-- Dump body (raised/lowering animation) -->
+              <g style="transform-origin:30px 42px;animation:adt-dump 3s ease-in-out infinite">
+                <!-- Dump bed -->
+                <rect x="28" y="20" width="110" height="28" rx="3" fill="#e8b800" stroke="#b88e00" stroke-width="1.8"/>
+                <!-- Dump bed side ribs -->
+                <line x1="55" y1="20" x2="55" y2="48" stroke="#b88e00" stroke-width="1.2" opacity="0.6"/>
+                <line x1="82" y1="20" x2="82" y2="48" stroke="#b88e00" stroke-width="1.2" opacity="0.6"/>
+                <line x1="109" y1="20" x2="109" y2="48" stroke="#b88e00" stroke-width="1.2" opacity="0.6"/>
+                <!-- Load (dirt in bed) -->
+                <ellipse cx="90" cy="22" rx="46" ry="7" fill="#8B5E00" stroke="#6b4400" stroke-width="1"/>
+                <ellipse cx="90" cy="19" rx="42" ry="5" fill="#a06a00" opacity="0.8"/>
+              </g>
+              <!-- Cab -->
+              <rect x="6" y="36" width="40" height="26" rx="4" fill="#d4a800" stroke="#906e00" stroke-width="1.8"/>
+              <!-- Windshield -->
+              <rect x="26" y="38" width="18" height="15" rx="2" fill="#1a3a5a" stroke="#2ec4b6" stroke-width="1.3"/>
+              <line x1="35" y1="38" x2="35" y2="53" stroke="#2ec4b6" stroke-width="0.8" opacity="0.5"/>
+              <!-- Cab roof visor -->
+              <rect x="4" y="32" width="44" height="8" rx="3" fill="#c49a00" stroke="#906e00" stroke-width="1.5"/>
+              <!-- Headlights -->
+              <circle cx="9" cy="56" r="4" fill="#fffacd" stroke="#f5c518" stroke-width="1"/>
+              <circle cx="9" cy="56" r="2" fill="#fff" style="animation:adt-headlight 1.5s ease-in-out infinite alternate"/>
+              <!-- Exhaust stack -->
+              <rect x="38" y="24" width="5" height="14" rx="2" fill="#555" stroke="#333" stroke-width="1"/>
+              <!-- Exhaust puffs -->
+              <circle cx="40" cy="20" r="3.5" fill="#888" style="animation:adt-smoke 2s ease-out infinite" opacity="0.7"/>
+              <circle cx="42" cy="14" r="2.8" fill="#999" style="animation:adt-smoke 2s ease-out 0.4s infinite" opacity="0.5"/>
+              <circle cx="38" cy="8" r="2.2" fill="#aaa" style="animation:adt-smoke 2s ease-out 0.8s infinite" opacity="0.3"/>
+              <!-- Main chassis / frame -->
+              <rect x="4" y="61" width="148" height="10" rx="2" fill="#c49a00" stroke="#906e00" stroke-width="1.5"/>
+              <!-- Hitch point / articulation -->
+              <circle cx="30" cy="61" r="4" fill="#555" stroke="#333" stroke-width="1.2"/>
+              <!-- Front axle / wheels -->
+              <rect x="8" y="68" width="28" height="14" rx="7" fill="#1e2035" stroke="#f5c518" stroke-width="2"/>
+              <circle cx="14" cy="75" r="7" fill="#12141f" stroke="#f5c518" stroke-width="2"/>
+              <circle cx="30" cy="75" r="7" fill="#12141f" stroke="#f5c518" stroke-width="2"/>
+              <circle cx="14" cy="75" r="3" fill="#2a2a3a" stroke="#f5c518" stroke-width="1" style="animation:adt-wheel 0.8s linear infinite"/>
+              <circle cx="30" cy="75" r="3" fill="#2a2a3a" stroke="#f5c518" stroke-width="1" style="animation:adt-wheel 0.8s linear infinite"/>
+              <!-- Rear bogie wheels (twin axle) -->
+              <rect x="100" y="68" width="52" height="14" rx="7" fill="#1e2035" stroke="#f5c518" stroke-width="2"/>
+              <circle cx="107" cy="75" r="7" fill="#12141f" stroke="#f5c518" stroke-width="2"/>
+              <circle cx="123" cy="75" r="7" fill="#12141f" stroke="#f5c518" stroke-width="2"/>
+              <circle cx="139" cy="75" r="7" fill="#12141f" stroke="#f5c518" stroke-width="2"/>
+              <circle cx="107" cy="75" r="3" fill="#2a2a3a" stroke="#f5c518" stroke-width="1" style="animation:adt-wheel 0.8s linear infinite"/>
+              <circle cx="123" cy="75" r="3" fill="#2a2a3a" stroke="#f5c518" stroke-width="1" style="animation:adt-wheel 0.8s linear infinite"/>
+              <circle cx="139" cy="75" r="3" fill="#2a2a3a" stroke="#f5c518" stroke-width="1" style="animation:adt-wheel 0.8s linear infinite"/>
+              <!-- Ground shadow -->
+              <ellipse cx="80" cy="90" rx="70" ry="4" fill="rgba(0,0,0,0.18)"/>
+              <!-- Road dust -->
+              <circle cx="148" cy="78" r="3" fill="#8B6914" style="animation:adt-dust 1.4s ease-out infinite" opacity="0.7"/>
+              <circle cx="155" cy="82" r="2.2" fill="#8B6914" style="animation:adt-dust 1.4s ease-out 0.3s infinite" opacity="0.5"/>
+            </svg>
+            <style>
+              @keyframes adt-dump      { 0%{transform:rotate(0deg)} 30%{transform:rotate(-14deg)} 60%{transform:rotate(-14deg)} 90%{transform:rotate(0deg)} 100%{transform:rotate(0deg)} }
+              @keyframes adt-wheel     { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+              @keyframes adt-smoke     { 0%{transform:translate(0,0) scale(1);opacity:.7} 100%{transform:translate(4px,-18px) scale(2.2);opacity:0} }
+              @keyframes adt-dust      { 0%{transform:translate(0,0);opacity:.7} 100%{transform:translate(12px,-10px) scale(2);opacity:0} }
+              @keyframes adt-headlight { from{opacity:.6} to{opacity:1} }
+            </style>
+          </div>
         </div>
 
         <div class="quick-access">
@@ -428,5 +563,36 @@
       });
     })();
   </script>
+
+<!-- Your existing app content above -->
+<!-- VERSION CHECK (FIXED) -->
+<script>
+const CURRENT_VERSION = "1.0.0";
+
+async function checkForUpdate() {
+  try {
+    const res = await fetch("https://eman1992hub.github.io/AML-MineGuard/version.json");
+    const data = await res.json();
+
+    if (data.version && data.version !== CURRENT_VERSION) {
+      const msg =
+        "🚨 NEW UPDATE AVAILABLE\n\n" +
+        data.message +
+        "\n\nCurrent: " + CURRENT_VERSION +
+        "\nNew: " + data.version;
+
+      if (confirm(msg)) {
+        window.location.href = data.apk_url;
+      }
+    }
+  } catch (err) {
+    console.log("Update check failed", err);
+  }
+}
+
+window.addEventListener("load", () => {
+  setTimeout(checkForUpdate, 2000);
+});
+</script>
 </body>
 </html>
